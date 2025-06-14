@@ -32,7 +32,12 @@ const Header = () => {
                             className="menu menu-sm dropdown-content bg-base-100 text-[20px] font-medium space-y-4 rounded-box z-1 mt-3 w-52 p-2 shadow menu-navbar">
                             <NavLink to='/'>Home</NavLink>
                             <NavLink to='/Fridge'>Fridge</NavLink>
-                            <NavLink to='/my-recipes'>My Recipes</NavLink>
+                            {
+                                user ? <NavLink to='/add-food'>Add Food</NavLink> : <NavLink></NavLink>
+                            }
+                            {
+                                user ? <NavLink to='/my-items'>My Items</NavLink> : <NavLink></NavLink>
+                            }
                         </ul>
                     </div>
                 </div>
