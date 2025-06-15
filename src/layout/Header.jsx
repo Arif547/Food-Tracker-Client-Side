@@ -1,8 +1,7 @@
 import React, { use, useState } from 'react';
 import { Link, NavLink } from 'react-router';
 import { AuthContext } from '../provider/AuthProvider';
-// import userProfile from '../../assets/user.png'
-// import recipeBook from '../assets/recipe-book.png'
+import foodLogo from '../assets/donut.png'
 import { ToastContainer, toast } from 'react-toastify';
 
 
@@ -44,7 +43,7 @@ const Header = () => {
 
                 <div className='flex gap-4 lg:col-span-3 max-lg:justify-center items-center'>
                     <Link to='/' className='flex gap-4 items-center'>
-                        {/* <img src={recipeBook} alt="" className='w-[40px] h-[40px]' /> */}
+                        <img src={foodLogo} alt="" className='w-[40px] h-[40px]' />
                         <h1 className='text-[30px] font-bold max-md:hidden'>Food Tracker </h1>
                     </Link>
                 </div>

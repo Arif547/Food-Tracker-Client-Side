@@ -2,7 +2,7 @@ import React from 'react';
 
 const Footer = () => {
     return (
-        <footer className="bg-gray-900 text-white p-6 mt-10">
+        <footer className="bg-gray-900 text-white p-6">
             <div className="container mx-auto flex flex-col items-center">
                 <h2 className="text-xl font-bold">Food Tracker </h2>
                 <p className="text-sm mt-2">© {new Date().getFullYear()} Food Tracker. All rights reserved.</p>
