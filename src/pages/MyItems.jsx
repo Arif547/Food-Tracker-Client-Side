@@ -1,14 +1,13 @@
 import React, { use, useEffect, useState } from 'react';
 import UpdateModal from '../components/UpdateModal';
-import ConfirmModal from '../components/ConfirmModal';
 import { AuthContext } from '../provider/AuthProvider';
+import Swal from 'sweetalert2';
 
 const MyItems = () => {
     const { user } = use(AuthContext);
     const [myFoods, setMyFoods] = useState([]);
     const [selectedFood, setSelectedFood] = useState(null);
     const [showUpdateModal, setShowUpdateModal] = useState(false);
-    const [showDeleteModal, setShowDeleteModal] = useState(false);
 
     useEffect(() => {
         const fetchMyFoods = async () => {
@@ -20,12 +19,27 @@ const MyItems = () => {
         if (user?.email) fetchMyFoods();
     }, [user]);
 
-    const handleDelete = async () => {
-        await fetch(`http://localhost:3000/foods/${selectedFood._id}`, {
-            method: 'DELETE',
+    const handleDelete = async (food) => {
+        Swal.fire({
+            title: "Are you sure?",
+            text: `You are about to delete "${food.title}"`,
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, delete it!"
+        }).then(async (result) => {
+            if (result.isConfirmed) {
+                const res = await fetch(`http://localhost:3000/foods/${food._id}`, {
+                    method: 'DELETE',
+                });
+
+                if (res.ok) {
+                    setMyFoods(myFoods.filter(f => f._id !== food._id));
+                    Swal.fire("Deleted!", "The food item has been deleted.", "success");
+                }
+            }
         });
-        setMyFoods(myFoods.filter(food => food._id !== selectedFood._id));
-        setShowDeleteModal(false);
     };
 
     const handleUpdate = (updatedFood) => {
@@ -66,10 +80,7 @@ const MyItems = () => {
 
                                     <button
                                         className="bg-red-500 text-white px-3 py-1 rounded"
-                                        onClick={() => {
-                                            setSelectedFood(food);
-                                            setShowDeleteModal(true);
-                                        }}
+                                        onClick={() => handleDelete(food)}
                                     >Delete</button>
                                 </td>
                             </tr>
@@ -78,19 +89,11 @@ const MyItems = () => {
                 </table>
             </div>
 
-            {/* Modals */}
             {showUpdateModal && (
                 <UpdateModal
                     food={selectedFood}
                     onClose={() => setShowUpdateModal(false)}
                     onUpdate={handleUpdate}
-                />
-            )}
-            {showDeleteModal && (
-                <ConfirmModal
-                    message={`Are you sure you want to delete "${selectedFood.title}"?`}
-                    onConfirm={handleDelete}
-                    onCancel={() => setShowDeleteModal(false)}
                 />
             )}
         </div>

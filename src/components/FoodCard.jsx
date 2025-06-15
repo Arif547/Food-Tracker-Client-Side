@@ -10,9 +10,9 @@ const FoodCard = ({ food, isNearlyExpired }) => {
                 className="bg-white rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden"
             >
 
-                <div className='absolute mt-1.5 ml-4'>
+                <div className='absolute mt-4 ml-4'>
                     {isExpired && (
-                        <span className="inline-block bg-red-100 text-red-600 px-2 py-1 text-xs rounded-full mb-2">
+                        <span className="inline-block bg-red-100 text-red-600 px-3 py-2 text-1xl rounded-full mb-2">
                             ❌ Expired
                         </span>
                     )}
