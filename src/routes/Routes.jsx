@@ -9,6 +9,7 @@ import Register from '../Pages/Register';
 import AddFood from '../pages/AddFood';
 import PrivateRoute from '../provider/PrivateRoute';
 import MyItems from '../pages/MyItems';
+import FoodsDetails from '../pages/FoodsDetails';
 
 export const router = createBrowserRouter([
     {
@@ -24,6 +25,7 @@ export const router = createBrowserRouter([
             },
             {
                 path: '/Fridge',
+                loader: () => fetch('http://localhost:3000/foods'),
                 Component: Fridge,
             },
             {
@@ -38,6 +40,14 @@ export const router = createBrowserRouter([
                 element: <PrivateRoute>
                     <MyItems></MyItems>
                 </PrivateRoute>,
+            },
+            {
+                path: '/food-details/:id',
+                loader: ({ params }) => fetch(`http://localhost:3000/foods/${params.id}`),
+                element: <PrivateRoute>
+                    <FoodsDetails></FoodsDetails>
+                </PrivateRoute>,
+
             },
             {
                 path: '/login',

@@ -3,10 +3,29 @@ import Banner from '../components/Banner';
 
 import NearExpiryFoods from '../components/NearExpiryFoods';
 import ExpiredFoods from '../components/ExpiredFoods';
+import { motion, useScroll } from "motion/react"
+
 
 const Home = () => {
+    const { scrollYProgress } = useScroll()
+
     return (
         <div>
+            <motion.div className='z-50'
+                id="scroll-indicator"
+                style={{
+                    scaleX: scrollYProgress,
+                    position: "fixed",
+                    top: 0,
+                    left: 0,
+                    right: 0,
+                    height: 10,
+                    originX: 0,
+                    backgroundColor: "#ff0088",
+                }}
+            />
+            
+
             <Banner></Banner>
             <NearExpiryFoods></NearExpiryFoods>
             <ExpiredFoods></ExpiredFoods>

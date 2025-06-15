@@ -1,10 +1,12 @@
 import React, { use } from 'react';
 import { AuthContext } from '../provider/AuthProvider';
 import Swal from 'sweetalert2';
+import { useNavigate } from 'react-router';
 
 const AddFood = () => {
 
     const { user } = use(AuthContext);
+    const navigate = useNavigate();
     // console.log(user);
 
     const handleAddFood = e => {
@@ -33,9 +35,10 @@ const AddFood = () => {
                     Swal.fire({
                         title: "Food added successfully!",
                         icon: "success",
-                        draggable: true
-                    });
+                        draggable: true,
 
+                    });
+                    navigate('/my-items')
                     // form.reset()
                 }
             })

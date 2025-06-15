@@ -1,4 +1,5 @@
 import React from 'react';
+import TrueFocus from './TrueFocus';
 
 
 const Banner = () => {
@@ -16,8 +17,16 @@ const Banner = () => {
                         <div className="hero-overlay"></div>
                         <div className="hero-content text-neutral-content text-center">
                             <div>
-                                <h1 className="mb-5 text-5xl font-bold"> Welcome to Food Expiry Tracker System</h1>
-                                <p className="mb-5 text-2xl">
+                                {/* <h1 className="mb-5 text-5xl font-bold"> Welcome to Food Expiry Tracker System</h1> */}
+                                <TrueFocus
+                                    sentence="Welcome to Food Expiry Tracker System"
+                                    manualMode={false}
+                                    blurAmount={5}
+                                    borderColor="red"
+                                    animationDuration={1}
+                                    pauseBetweenAnimations={1}
+                                />
+                                <p className="mt-5 mb-5 text-2xl">
                                     Keep Your Kitchen Organized & Waste-Free
                                 </p>
                                 <button className="btn btn-primary">Get Started</button>

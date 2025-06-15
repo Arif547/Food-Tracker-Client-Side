@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router';
+import * as motion from "motion/react-client"
 
 const ExpiredCard = ({ food }) => {
     return (
@@ -23,12 +24,23 @@ const ExpiredCard = ({ food }) => {
                             ❌ Expired
                         </span>
                     </div>
-                    <Link
+                    {/* <Link
                         to={`/food-details/${food._id}`}
                         className="inline-block btn btn-primary text-white px-4 py-2  text-sm"
                     >
                         View Details
-                    </Link>
+                    </Link> */}
+                    
+                    <motion.button whileHover={{ scale: 1.2 }}
+                        whileTap={{ scale: 0.8 }}>
+                        <Link
+                            to={`/food-details/${food._id}`}
+                            className="inline-block btn btn-primary hover:btn-secondary text-white px-4 py-2  text-sm"
+                        >
+                            View Details
+                        </Link>
+                    </motion.button>
+
                 </div>
             </div>
         </div>
