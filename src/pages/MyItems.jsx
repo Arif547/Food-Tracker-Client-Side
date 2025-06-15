@@ -71,7 +71,7 @@ const MyItems = () => {
                                 <td className="p-2">{food.ExpiryDate}</td>
                                 <td className="p-2">
                                     <button
-                                        className="bg-yellow-400 px-3 py-1 rounded mr-2"
+                                        className="bg-yellow-400 px-3 py-1 cursor-pointer hover:bg-red-500 hover:text-white rounded mr-2"
                                         onClick={() => {
                                             setSelectedFood(food);
                                             setShowUpdateModal(true);
@@ -79,7 +79,7 @@ const MyItems = () => {
                                     >Update</button>
 
                                     <button
-                                        className="bg-red-500 text-white px-3 py-1 rounded"
+                                        className="bg-red-500 hover:bg-yellow-500 text-white hover:text-black px-3 py-1 cursor-pointer rounded"
                                         onClick={() => handleDelete(food)}
                                     >Delete</button>
                                 </td>
