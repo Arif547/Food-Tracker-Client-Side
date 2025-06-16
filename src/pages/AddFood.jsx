@@ -20,15 +20,15 @@ const AddFood = () => {
 
         console.log(newFood);
 
-        fetch('http://localhost:3000/foods', {
+        fetch('https://food-tracker-server-zeta.vercel.app/foods', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
-                , 
-                authorization: `Bearer ${user.accessToken}`               
-    
+                ,
+                authorization: `Bearer ${user.accessToken}`
+
             },
-            
+
             body: JSON.stringify(newFood)
         })
             .then(res => res.json())

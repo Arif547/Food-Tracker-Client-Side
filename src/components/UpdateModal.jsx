@@ -18,7 +18,7 @@ const UpdateModal = ({ food, onClose, onUpdate, user }) => {
         e.preventDefault();
 
         try {
-            const res = await fetch(`http://localhost:3000/foods/${food._id}`, {
+            const res = await fetch(`https://food-tracker-server-zeta.vercel.app/foods/${food._id}`, {
                 method: 'PUT',
                 headers: { 'Content-Type': 'application/json', authorization: `Bearer ${user.accessToken}` },
                 body: JSON.stringify(formData)

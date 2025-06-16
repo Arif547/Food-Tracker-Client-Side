@@ -5,7 +5,7 @@ const ExpiredFoods = () => {
     const [foods, setFoods] = useState([]);
 
     useEffect(() => {
-        fetch('http://localhost:3000/foods/expired')
+        fetch('https://food-tracker-server-zeta.vercel.app/foods/expired')
             .then(res => res.json())
             .then(data => setFoods(data));
     }, []);

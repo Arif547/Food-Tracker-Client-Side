@@ -10,13 +10,13 @@ const FoodStats = () => {
     const [expiredCount, setExpiredCount] = useState([]);
 
     useEffect(() => {
-        fetch('http://localhost:3000/foods/near-expiry')
+        fetch('https://food-tracker-server-zeta.vercel.app/foods/near-expiry')
             .then(res => res.json())
             .then(data => setNearExpiryFoods(data));
     }, []);
 
     useEffect(() => {
-        fetch('http://localhost:3000/foods/expired')
+        fetch('https://food-tracker-server-zeta.vercel.app/foods/expired')
             .then(res => res.json())
             .then(data => setExpiredCount(data));
     }, []);
@@ -28,7 +28,7 @@ const FoodStats = () => {
 
     return (
         <div className='max-w-[1220px] mx-auto mb-16'>
-            
+
 
             <h2 className="text-5xl font-bold mb-14 text-center">Food Stats</h2>
 

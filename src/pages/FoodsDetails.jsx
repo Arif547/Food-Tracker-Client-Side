@@ -21,7 +21,7 @@ const FoodDetails = () => {
 
     // Fetch notes (you'll need a route like /notes?foodId=xxx)
     useEffect(() => {
-        fetch(`http://localhost:3000/notes/${food._id}`)
+        fetch(`https://food-tracker-server-zeta.vercel.app/notes/${food._id}`)
             .then(res => res.json())
             .then(data => setAllNotes(data))
             .catch(err => console.error(err));
@@ -55,7 +55,7 @@ const FoodDetails = () => {
         };
 
         try {
-            const res = await fetch('http://localhost:3000/notes', {
+            const res = await fetch('https://food-tracker-server-zeta.vercel.app/notes', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(newNote)

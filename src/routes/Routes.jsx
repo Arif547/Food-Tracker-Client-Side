@@ -20,12 +20,12 @@ export const router = createBrowserRouter([
             {
                 index: true,
                 path: '/',
-                loader: () => fetch('http://localhost:3000/foods'),
+                loader: () => fetch('https://food-tracker-server-zeta.vercel.app/foods'),
                 Component: Home,
             },
             {
                 path: '/Fridge',
-                loader: () => fetch('http://localhost:3000/foods'),
+                loader: () => fetch('https://food-tracker-server-zeta.vercel.app/foods'),
                 Component: Fridge,
             },
             {
@@ -43,7 +43,7 @@ export const router = createBrowserRouter([
             },
             {
                 path: '/food-details/:id',
-                loader: ({ params }) => fetch(`http://localhost:3000/foods/${params.id}`),
+                loader: ({ params }) => fetch(`https://food-tracker-server-zeta.vercel.app/foods/${params.id}`),
                 element: <PrivateRoute>
                     <FoodsDetails></FoodsDetails>
                 </PrivateRoute>,

@@ -11,7 +11,7 @@ const MyItems = () => {
 
     useEffect(() => {
         const fetchMyFoods = async () => {
-            const res = await fetch(`http://localhost:3000/my-items?email=${user.email}`, {
+            const res = await fetch(`https://food-tracker-server-zeta.vercel.app/my-items?email=${user.email}`, {
                 headers: {
                     authorization: `Bearer ${user.accessToken}`
                 }
@@ -36,7 +36,7 @@ const MyItems = () => {
             confirmButtonText: "Yes, delete it!"
         }).then(async (result) => {
             if (result.isConfirmed) {
-                const res = await fetch(`http://localhost:3000/foods/${food._id}`, {
+                const res = await fetch(`https://food-tracker-server-zeta.vercel.app/foods/${food._id}`, {
                     method: 'DELETE',
                     headers: {
                         authorization: `Bearer ${user.accessToken}`

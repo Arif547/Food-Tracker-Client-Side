@@ -5,19 +5,19 @@ const NearExpiryFoods = () => {
     const [foods, setFoods] = useState([]);
 
     useEffect(() => {
-        fetch('http://localhost:3000/foods/near-expiry')
+        fetch('https://food-tracker-server-zeta.vercel.app/foods/near-expiry')
             .then(res => res.json())
             .then(data => setFoods(data));
     }, []);
 
- 
+
 
     return (
         <div className='max-w-7xl mx-auto py-10 px-5 lg:py-28 md:py-20'>
             <h2 className="text-5xl font-bold mb-14 text-center">Nearly Expiry Foods (Next 5 Days)</h2>
             <div className="grid md:grid-cols-2 gap-6">
                 {foods.slice(0, 6).map(food => (
-                    <FoodCard key={food._id} food={food} isNearlyExpired/>
+                    <FoodCard key={food._id} food={food} isNearlyExpired />
                 ))}
             </div>
         </div>

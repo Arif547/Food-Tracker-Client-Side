@@ -30,7 +30,7 @@ const Home = () => {
             <Banner></Banner>
             <NearExpiryFoods></NearExpiryFoods>
             <ExpiredFoods></ExpiredFoods>
-            <FoodStats></FoodStats>
+            {/* <FoodStats><g/FoodStats> */}
 
             <section className="bg-green-50 lg:py-[120px] py-[80px] px-5 rounded-xl shadow">
                 <div className='max-w-[1220px] mx-auto'>

@@ -12,9 +12,9 @@ const Fridge = () => {
 
     useEffect(() => {
         const fetchFoods = async () => {
-            let url = 'http://localhost:3000/foods';
+            let url = 'https://food-tracker-server-zeta.vercel.app/foods';
             if (category !== 'all') {
-                url = `http://localhost:3000/foods/category/${category}`;
+                url = `https://food-tracker-server-zeta.vercel.app/foods/category/${category}`;
             }
 
             try {
