@@ -1,4 +1,4 @@
-import React, { use, useState } from 'react';
+import React, { use, useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router';
 import { AuthContext } from '../provider/AuthProvider';
 import { toast } from 'react-toastify';
@@ -7,9 +7,16 @@ import OtherSignin from '../components/OtherSignin';
 
 
 const Register = () => {
-    const { createUser, setUser, updateUser } = use(AuthContext);
+    const { createUser, setUser, updateUser, user } = use(AuthContext);
     const navigate = useNavigate();
     const [passwordError, setPasswordError] = useState('');
+
+    useEffect(() => {
+        if (user) {
+            navigate('/');
+            toast.info("You are already logged in.");
+        }
+    }, [user, navigate]);
 
     const handleRegister = (e) => {
         e.preventDefault();

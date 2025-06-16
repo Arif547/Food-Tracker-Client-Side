@@ -10,12 +10,12 @@ const Login = () => {
     const location = useLocation();
     const navigate = useNavigate();
 
-    // useEffect(() => {
-    //     if (user) {
-    //         navigate('/');
-    //         toast.info("You are already logged in.");
-    //     }
-    // }, [user, navigate]);
+    useEffect(() => {
+        if (user) {
+            navigate('/');
+            toast.info("You are already logged in.");
+        }
+    }, [user, navigate]);
 
     const handleLogin = (e) => {
         e.preventDefault();
