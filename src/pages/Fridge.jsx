@@ -5,13 +5,15 @@ import FoodCard from '../components/FoodCard';
 const Fridge = () => {
     const initialFood = useLoaderData();
     const [foods, setFoods] = useState(initialFood);
-    const [category, setCategory] = useState('all'); // Default selection
+    const [category, setCategory] = useState('all');
+    const [loading, setLoading] = useState(false);
 
 
 
 
     useEffect(() => {
         const fetchFoods = async () => {
+            setLoading(true);
             let url = 'https://food-tracker-server-zeta.vercel.app/foods';
             if (category !== 'all') {
                 url = `https://food-tracker-server-zeta.vercel.app/foods/category/${category}`;
@@ -23,11 +25,13 @@ const Fridge = () => {
                 setFoods(data);
             } catch (error) {
                 console.error("Error fetching foods:", error);
+            } finally {
+                setLoading(false);
             }
         };
 
         fetchFoods();
-    }, [category]); // Fetch foods when category changes
+    }, [category]);
 
     return (
         <div>
@@ -76,16 +80,22 @@ const Fridge = () => {
                 </form>
 
 
+                {loading ? (
+                    <div className='text-center'><span className="loading loading-spinner loading-xl"></span></div>
+                    
+                ) : (
+                    <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6'>
+                        {foods.map(food => (
+                            <FoodCard
+                                key={food._id}
+                                foods={foods}
+                                setFoods={setFoods}
+                                food={food}
+                            />
+                        ))}
+                    </div>
+                )}
 
-                <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6'>
-                    {
-                        foods.map(food => <FoodCard
-                            key={food._id}
-                            foods={foods}
-                            setFoods={setFoods}
-                            food={food}></FoodCard>)
-                    }
-                </div>
 
             </div>
         </div>

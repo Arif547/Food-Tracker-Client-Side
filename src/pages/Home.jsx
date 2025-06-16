@@ -7,6 +7,7 @@ import { motion, useScroll } from "motion/react"
 import FoodStats from '../components/FoodStats';
 
 
+
 const Home = () => {
     const { scrollYProgress } = useScroll()
 
@@ -31,6 +32,7 @@ const Home = () => {
             <NearExpiryFoods></NearExpiryFoods>
             <ExpiredFoods></ExpiredFoods>
             <FoodStats></FoodStats>
+            
 
             <section className="bg-green-50 lg:py-[120px] py-[80px] px-5 rounded-xl shadow">
                 <div className='max-w-[1220px] mx-auto'>
