@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Swal from 'sweetalert2';
 
-const UpdateModal = ({ food, onClose, onUpdate }) => {
+const UpdateModal = ({ food, onClose, onUpdate, user }) => {
     const [formData, setFormData] = useState(food);
 
     // 🟡 This ensures form data updates when a different food is selected
@@ -20,7 +20,7 @@ const UpdateModal = ({ food, onClose, onUpdate }) => {
         try {
             const res = await fetch(`http://localhost:3000/foods/${food._id}`, {
                 method: 'PUT',
-                headers: { 'Content-Type': 'application/json' },
+                headers: { 'Content-Type': 'application/json', authorization: `Bearer ${user.accessToken}` },
                 body: JSON.stringify(formData)
             });
 

@@ -4,6 +4,7 @@ import Banner from '../components/Banner';
 import NearExpiryFoods from '../components/NearExpiryFoods';
 import ExpiredFoods from '../components/ExpiredFoods';
 import { motion, useScroll } from "motion/react"
+import FoodStats from '../components/FoodStats';
 
 
 const Home = () => {
@@ -24,11 +25,12 @@ const Home = () => {
                     backgroundColor: "#ff0088",
                 }}
             />
-            
+
 
             <Banner></Banner>
             <NearExpiryFoods></NearExpiryFoods>
             <ExpiredFoods></ExpiredFoods>
+            <FoodStats></FoodStats>
 
             <section className="bg-green-50 lg:py-[120px] py-[80px] px-5 rounded-xl shadow">
                 <div className='max-w-[1220px] mx-auto'>

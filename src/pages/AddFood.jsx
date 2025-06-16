@@ -24,7 +24,11 @@ const AddFood = () => {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
+                , 
+                authorization: `Bearer ${user.accessToken}`               
+    
             },
+            
             body: JSON.stringify(newFood)
         })
             .then(res => res.json())

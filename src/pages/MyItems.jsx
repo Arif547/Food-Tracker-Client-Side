@@ -11,13 +11,19 @@ const MyItems = () => {
 
     useEffect(() => {
         const fetchMyFoods = async () => {
-            const res = await fetch(`http://localhost:3000/my-items?email=${user.email}`);
+            const res = await fetch(`http://localhost:3000/my-items?email=${user.email}`, {
+                headers: {
+                    authorization: `Bearer ${user.accessToken}`
+                }
+            });
             const data = await res.json();
             setMyFoods(data);
         };
 
         if (user?.email) fetchMyFoods();
     }, [user]);
+
+
 
     const handleDelete = async (food) => {
         Swal.fire({
@@ -32,6 +38,9 @@ const MyItems = () => {
             if (result.isConfirmed) {
                 const res = await fetch(`http://localhost:3000/foods/${food._id}`, {
                     method: 'DELETE',
+                    headers: {
+                        authorization: `Bearer ${user.accessToken}`
+                    }
                 });
 
                 if (res.ok) {
@@ -93,7 +102,7 @@ const MyItems = () => {
                 <UpdateModal
                     food={selectedFood}
                     onClose={() => setShowUpdateModal(false)}
-                    onUpdate={handleUpdate}
+                    onUpdate={handleUpdate} user={user}
                 />
             )}
         </div>

@@ -10,6 +10,8 @@ const NearExpiryFoods = () => {
             .then(data => setFoods(data));
     }, []);
 
+ 
+
     return (
         <div className='max-w-7xl mx-auto py-10 px-5 lg:py-28 md:py-20'>
             <h2 className="text-5xl font-bold mb-14 text-center">Nearly Expiry Foods (Next 5 Days)</h2>

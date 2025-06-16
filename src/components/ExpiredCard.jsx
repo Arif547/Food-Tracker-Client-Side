@@ -30,7 +30,7 @@ const ExpiredCard = ({ food }) => {
                     >
                         View Details
                     </Link> */}
-                    
+
                     <motion.button whileHover={{ scale: 1.2 }}
                         whileTap={{ scale: 0.8 }}>
                         <Link
@@ -40,8 +40,8 @@ const ExpiredCard = ({ food }) => {
                             View Details
                         </Link>
                     </motion.button>
-
                 </div>
+
             </div>
         </div>
     );
