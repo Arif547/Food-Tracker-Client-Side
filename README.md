@@ -145,14 +145,4 @@ Frontend & MERN Stack Developer
 
 This project demonstrates full-stack capabilities including frontend UI/UX, backend APIs, secure authentication, JWT handling, and real-world problem-solving. Thank you for reviewing!
 
-```
 
----
-
-Let me know if you'd like me to also add:
-- Badges (for GitHub stats or tech used)
-- Screenshots section templated with image links
-- A `setup guide` for local development
-
-Would you like that as well?
-```
