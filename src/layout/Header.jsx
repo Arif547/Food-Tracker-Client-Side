@@ -51,6 +51,7 @@ const Header = () => {
                 <div className='menu-navbar flex lg:gap-10 gap-4 text-[20px] font-medium col-span-6 justify-center align-middle max-lg:mb-5 max-lg:hidden'>
                     <NavLink to='/'>Home</NavLink>
                     <NavLink to='/Fridge'>Fridge</NavLink>
+                    <NavLink to='/expired-foods'>Expired Foods</NavLink>
                     {
                         user ? <NavLink to='/add-food'>Add Food</NavLink> : <NavLink></NavLink>
                     }

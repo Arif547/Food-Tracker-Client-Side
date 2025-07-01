@@ -5,6 +5,8 @@ import NearExpiryFoods from '../components/NearExpiryFoods';
 import ExpiredFoods from '../components/ExpiredFoods';
 import { motion, useScroll } from "motion/react"
 import FoodStats from '../components/FoodStats';
+import TipsSection from '../components/TipsSection';
+import DonateSection from '../components/DonateSection';
 
 
 
@@ -32,9 +34,11 @@ const Home = () => {
             <NearExpiryFoods></NearExpiryFoods>
             <ExpiredFoods></ExpiredFoods>
             <FoodStats></FoodStats>
+            <TipsSection/>
+            <DonateSection/>
             
 
-            <section className="bg-green-50 lg:py-[120px] py-[80px] px-5 rounded-xl shadow">
+            {/* <section className="bg-green-50 lg:py-[120px] py-[80px] px-5 rounded-xl shadow">
                 <div className='max-w-[1220px] mx-auto'>
                     <h2 className="text-2xl font-bold mb-4 text-green-800">Tips to Reduce Food Waste</h2>
                     <ul className="list-disc pl-6 text-gray-700 space-y-2">
@@ -59,7 +63,7 @@ const Home = () => {
                         <li>Contact local shelters, community fridges, or soup kitchens in your area.</li>
                     </ul>
                 </div>
-            </section>
+            </section> */}
 
 
         </div>

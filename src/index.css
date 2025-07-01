@@ -3,3 +3,8 @@
   themes: light --default;
  }
  @plugin "flowbite/plugin";
+
+
+ html{
+    scroll-behavior: smooth;
+ }

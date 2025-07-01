@@ -10,6 +10,7 @@ import AddFood from '../pages/AddFood';
 import PrivateRoute from '../provider/PrivateRoute';
 import MyItems from '../pages/MyItems';
 import FoodsDetails from '../pages/FoodsDetails';
+import ExpiredFoodsPage from '../pages/ExpiredFoodsPage';
 
 export const router = createBrowserRouter([
     {
@@ -27,6 +28,11 @@ export const router = createBrowserRouter([
                 path: '/Fridge',
                 loader: () => fetch('https://food-tracker-server-zeta.vercel.app/foods'),
                 Component: Fridge,
+            },
+            {
+                path: '/expired-foods',
+                loader: () => fetch('https://food-tracker-server-zeta.vercel.app/expired'),
+                Component: ExpiredFoodsPage,
             },
             {
                 path: 'add-food',
