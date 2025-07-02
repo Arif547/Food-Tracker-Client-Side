@@ -2,14 +2,17 @@ import React from 'react';
 
 const Loading = () => {
     return (
-        <div className='flex justify-center h-screen items-center align-middle'>
-            <span className="loading loading-bars loading-xs"></span>
-            <span className="loading loading-bars loading-sm"></span>
-            <span className="loading loading-bars loading-md"></span>
-            <span className="loading loading-bars loading-lg"></span>
-            <span className="loading loading-bars loading-xl"></span>
+        <div className="loading-container">
+            <div className="loading-spinner">
+                <div className="spinner-circle"></div>
+                <div className="spinner-circle"></div>
+                <div className="spinner-circle"></div>
+                <div className="spinner-circle"></div>
+            </div>
+            <div className="loading-text">Loading...</div>
         </div>
     );
 };
 
 export default Loading;
+

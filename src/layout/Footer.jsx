@@ -8,7 +8,7 @@ const Footer = () => {
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                     {/* Company Info */}
                     <div className="text-center md:text-left">
-                        <h2 className="text-2xl font-bold bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">Food Tracker</h2>
+                        <h2 className="text-4xl font-bold bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">Food Saver</h2>
                         <p className="mt-4 text-gray-300">Tracking your food journey with precision and care. Making healthy choices easier than ever.</p>
                     </div>
 
@@ -22,7 +22,7 @@ const Footer = () => {
                             </div>
                             <div className="flex items-center justify-center md:justify-start">
                                 <FaEnvelope className="text-blue-400 mr-2" />
-                                <a href="mailto:contact@FoodTracker.com" className="hover:text-blue-400 transition-colors">contact@FoodTracker.com</a>
+                                <a href="mailto:contact@FoodTracker.com" className="hover:text-blue-400 transition-colors">contact@FoodSaver.com</a>
                             </div>
                             <div className="flex items-center justify-center md:justify-start">
                                 <FaMapMarkerAlt className="text-blue-400 mr-2" />
