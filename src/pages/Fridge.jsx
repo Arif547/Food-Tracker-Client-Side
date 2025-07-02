@@ -55,20 +55,20 @@ const Fridge = () => {
         if (searchTerm.trim()) {
             const searchLower = searchTerm.toLowerCase().trim();
             filtered = filtered.filter(food => {
-                const name = foods.name || foods.FoodName || '';
-                const category = food.Category || food.category || '';
-                const description = food.description || food.Description || '';
+                const name = food.FoodName?.toLowerCase() || '';
+                const category = food.Category?.toLowerCase() || '';
+                const description = food.Description?.toLowerCase() || '';
 
-                return name.toLowerCase().includes(searchLower) ||
-                    category.toLowerCase().includes(searchLower) ||
-                    description.toLowerCase().includes(searchLower);
+                return name.includes(searchLower) ||
+                    category.includes(searchLower) ||
+                    description.includes(searchLower);
             });
         }
 
         // Sort functionality
         filtered.sort((a, b) => {
-            const nameA = (a.name || a.FoodName || '').toLowerCase();
-            const nameB = (b.name || b.FoodName || '').toLowerCase();
+            const nameA = a.FoodName?.toLowerCase() || '';
+            const nameB = b.FoodName?.toLowerCase() || '';
 
             if (sortOrder === 'asc') {
                 return nameA.localeCompare(nameB);
@@ -80,6 +80,7 @@ const Fridge = () => {
         setFilteredFoods(filtered);
     }, [foods, searchTerm, sortOrder]);
 
+    // Rest of the component remains the same...
     return (
         <div className="min-h-screen bg-gradient-to-br from-purple-50 via-white to-pink-50">
             {/* Hero Section */}

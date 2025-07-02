@@ -85,25 +85,27 @@ const TipsSection = () => {
         : tips.filter(tip => tip.category === activeCategory);
 
     return (
-        <div className="min-h-screen bg-gradient-to-br from-indigo-50 via-white to-purple-50">
+        <div className="min-h-screen bg-gray-50 ">
             {/* Header Section */}
-            <div className="relative overflow-hidden bg-gradient-to-r from-purple-600 to-indigo-600 text-white">
-                <div className="absolute inset-0 bg-black opacity-10"></div>
+            <div className="relative overflow-hidden text-black">
+
                 <div className="relative max-w-7xl mx-auto px-6 py-20">
                     <div className="text-center">
-                        <div className="inline-flex items-center justify-center w-16 h-16 bg-white bg-opacity-20 rounded-full mb-6">
-                            <Lightbulb className="w-8 h-8 text-white" />
+                        
+                        <div className="inline-flex items-center gap-3 bg-gradient-to-r from-violet-100 to-purple-100 text-violet-700 px-6 py-3 rounded-full font-semibold mb-6">
+                            <Lightbulb className="w-5 h-5" />
+                            <span>Food Tips</span>
                         </div>
-                        <h1 className="text-5xl font-bold mb-6 bg-gradient-to-r from-white to-purple-100 bg-clip-text text-transparent">
+                        <h1 className="text-5xl font-bold mb-6">
                             Smart Food Management Tips
                         </h1>
-                        <p className="text-xl text-purple-100 max-w-3xl mx-auto leading-relaxed">
+                        <p className="text-xl max-w-3xl mx-auto leading-relaxed">
                             Discover proven strategies to reduce food waste, save money, and keep your kitchen organized.
-                            Small changes can make a big difference for your wallet and the environment.
+                            Small changes can make a <span className="font-semibold text-violet-600">  big difference for your wallet and the environment. </span>
                         </p>
                     </div>
                 </div>
-                <div className="absolute bottom-0 left-0 right-0 h-20 bg-gradient-to-t from-white to-transparent"></div>
+
             </div>
 
             {/* Stats Section */}
@@ -129,8 +131,8 @@ const TipsSection = () => {
                                 key={category}
                                 onClick={() => setActiveCategory(category)}
                                 className={`px-6 py-3 rounded-full font-semibold transition-all duration-300 ${activeCategory === category
-                                        ? 'bg-purple-600 text-white shadow-lg scale-105'
-                                        : 'bg-white text-gray-600 hover:bg-purple-50 hover:text-purple-600 shadow-md'
+                                    ? 'bg-purple-600 text-white shadow-lg scale-105'
+                                    : 'bg-white text-gray-600 hover:bg-purple-50 hover:text-purple-600 shadow-md'
                                     }`}
                             >
                                 {category}

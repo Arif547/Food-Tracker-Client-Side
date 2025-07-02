@@ -11,6 +11,10 @@ import PrivateRoute from '../provider/PrivateRoute';
 import MyItems from '../pages/MyItems';
 import FoodsDetails from '../pages/FoodsDetails';
 import ExpiredFoodsPage from '../pages/ExpiredFoodsPage';
+import Donation from '../pages/Donation';
+import Contact from '../pages/Contact';
+import DashboardLayout from '../Pages/DashboardLayout';
+
 
 export const router = createBrowserRouter([
     {
@@ -35,17 +39,12 @@ export const router = createBrowserRouter([
                 Component: ExpiredFoodsPage,
             },
             {
-                path: 'add-food',
-                element: <PrivateRoute>
-                    <AddFood></AddFood>
-                </PrivateRoute>,
+                path: '/donation',
+                Component: Donation,
             },
-
             {
-                path: 'my-items',
-                element: <PrivateRoute>
-                    <MyItems></MyItems>
-                </PrivateRoute>,
+                path: '/contact',
+                Component: Contact,
             },
             {
                 path: '/food-details/:id',
@@ -66,6 +65,29 @@ export const router = createBrowserRouter([
         ]
 
     },
+    {
+        path: '/dashboard',
+        element: <PrivateRoute>
+            <DashboardLayout></DashboardLayout>
+        </PrivateRoute>,
+        children: [
+
+            {
+                index: true,
+                path: 'add-food',
+                element: <PrivateRoute>
+                    <AddFood></AddFood>
+                </PrivateRoute>,
+            },
+
+            {
+                path: 'my-items',
+                element: <PrivateRoute>
+                    <MyItems></MyItems>
+                </PrivateRoute>,
+            },
+        ]
+    }
 
 
 ]);

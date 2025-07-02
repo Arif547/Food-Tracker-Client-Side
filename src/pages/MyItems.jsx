@@ -8,6 +8,7 @@ const MyItems = () => {
     const [myFoods, setMyFoods] = useState([]);
     const [selectedFood, setSelectedFood] = useState(null);
     const [showUpdateModal, setShowUpdateModal] = useState(false);
+    const [searchTerm, setSearchTerm] = useState('');
 
     useEffect(() => {
         const fetchMyFoods = async () => {
@@ -23,16 +24,14 @@ const MyItems = () => {
         if (user?.email) fetchMyFoods();
     }, [user]);
 
-
-
     const handleDelete = async (food) => {
         Swal.fire({
             title: "Are you sure?",
             text: `You are about to delete "${food.title}"`,
             icon: "warning",
             showCancelButton: true,
-            confirmButtonColor: "#3085d6",
-            cancelButtonColor: "#d33",
+            confirmButtonColor: "#4F46E5",
+            cancelButtonColor: "#DC2626",
             confirmButtonText: "Yes, delete it!"
         }).then(async (result) => {
             if (result.isConfirmed) {
@@ -56,53 +55,88 @@ const MyItems = () => {
         setShowUpdateModal(false);
     };
 
+    const filteredFoods = myFoods.filter(food => 
+        food.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        food.Category.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+
     return (
         <div className="max-w-7xl mx-auto px-4 py-10">
-            <h2 className="text-3xl font-bold mb-6 text-center">My Food Items</h2>
+            <div className="mb-8">
+                <h2 className="text-3xl font-bold text-center text-indigo-600">My Food Items</h2>
+                <p className="text-center mt-2 text-gray-600">Total Items: {myFoods.length}</p>
+            </div>
 
-            <div className="overflow-x-auto">
-                <table className="w-full table-auto border-collapse">
-                    <thead>
-                        <tr className="bg-gray-100">
-                            <th className="p-3 border">Image</th>
-                            <th className="p-3 border">Title</th>
-                            <th className="p-3 border">Category</th>
-                            <th className="p-3 border">Expiry Date</th>
-                            <th className="p-3 border">Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {myFoods.map(food => (
-                            <tr key={food._id} className="text-center border-t">
-                                <td className="p-2"><img src={food.image} alt="" className="h-12 mx-auto" /></td>
-                                <td className="p-2">{food.title}</td>
-                                <td className="p-2">{food.Category}</td>
-                                <td className="p-2">{food.ExpiryDate}</td>
-                                <td className="p-2">
-                                    <button
-                                        className="bg-yellow-400 px-3 py-1 cursor-pointer hover:bg-red-500 hover:text-white rounded mr-2"
-                                        onClick={() => {
-                                            setSelectedFood(food);
-                                            setShowUpdateModal(true);
-                                        }}
-                                    >Update</button>
+            <div className="mb-6">
+                <div className="relative">
+                    <input
+                        type="text"
+                        placeholder="Search by title or category..."
+                        className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+                        value={searchTerm}
+                        onChange={(e) => setSearchTerm(e.target.value)}
+                    />
+                    <svg className="absolute right-3 top-2.5 h-5 w-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                    </svg>
+                </div>
+            </div>
 
-                                    <button
-                                        className="bg-red-500 hover:bg-yellow-500 text-white hover:text-black px-3 py-1 cursor-pointer rounded"
-                                        onClick={() => handleDelete(food)}
-                                    >Delete</button>
-                                </td>
-                            </tr>
-                        ))}
-                    </tbody>
-                </table>
+            <div className="bg-white rounded-lg shadow-lg overflow-hidden">
+                <div className="overflow-x-auto w-full">
+                    <div className="min-w-[800px] w-full">
+                        <table className="w-full table-auto">
+                            <thead>
+                                <tr className="bg-indigo-600 text-white">
+                                    <th className="px-6 py-4 whitespace-nowrap">Image</th>
+                                    <th className="px-6 py-4 whitespace-nowrap">Title</th>
+                                    <th className="px-6 py-4 whitespace-nowrap">Category</th>
+                                    <th className="px-6 py-4 whitespace-nowrap">Expiry Date</th>
+                                    <th className="px-6 py-4 whitespace-nowrap">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody className="divide-y divide-gray-200">
+                                {filteredFoods.map(food => (
+                                    <tr key={food._id} className="hover:bg-gray-50 transition-colors duration-200">
+                                        <td className="px-6 py-4 whitespace-nowrap">
+                                            <img src={food.image} alt="" className="h-16 w-16 object-cover rounded-full mx-auto" />
+                                        </td>
+                                        <td className="px-6 py-4 text-center whitespace-nowrap">{food.title}</td>
+                                        <td className="px-6 py-4 text-center whitespace-nowrap">{food.Category}</td>
+                                        <td className="px-6 py-4 text-center whitespace-nowrap">{food.ExpiryDate}</td>
+                                        <td className="px-6 py-4 text-center whitespace-nowrap">
+                                            <div className="flex flex-wrap gap-2 justify-center">
+                                                <button
+                                                    className="bg-indigo-500 text-white px-4 py-2 rounded-lg hover:bg-indigo-600 transition-colors duration-200"
+                                                    onClick={() => {
+                                                        setSelectedFood(food);
+                                                        setShowUpdateModal(true);
+                                                    }}
+                                                >
+                                                    Update
+                                                </button>
+                                                <button
+                                                    className="bg-violet-500 text-white px-4 py-2 rounded-lg hover:bg-violet-600 transition-colors duration-200"
+                                                    onClick={() => handleDelete(food)}
+                                                >
+                                                    Delete
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
             </div>
 
             {showUpdateModal && (
                 <UpdateModal
                     food={selectedFood}
                     onClose={() => setShowUpdateModal(false)}
-                    onUpdate={handleUpdate} user={user}
+                    onUpdate={handleUpdate}
+                    user={user}
                 />
             )}
         </div>

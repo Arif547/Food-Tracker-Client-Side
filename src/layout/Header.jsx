@@ -1,116 +1,114 @@
 import React, { use, useState } from 'react';
 import { Link, NavLink } from 'react-router';
 import { AuthContext } from '../provider/AuthProvider';
-import foodLogo from '../assets/donut.png'
+import { FaUtensils } from 'react-icons/fa';
 import { ToastContainer, toast } from 'react-toastify';
-
 
 const Header = () => {
     const { user, logOut } = use(AuthContext);
     const [showMenu, setShowMenu] = useState(localStorage.getItem("menuState") === "true");
+
     const handleLogOut = () => {
         logOut().then(() => {
-            toast.success(" Sign-out successful!");
+            toast.success("Sign-out successful!");
         }).catch(() => {
-            toast.error("Error Something is Wrong!")
+            toast.error("Something went wrong!");
         });
     }
 
-
     return (
-        <div className='bg-white border-b border-green-200'>
-            <div className='grid grid-cols-3 lg:grid-cols-12 max-w-[1240px] max-lg:justify-center mx-auto py-5 lg:items-center px-5'>
-
+        <div className='bg-white border-b border-gray-50 sticky top-0 z-50 '>
+            <div className='grid grid-cols-3 lg:grid-cols-12 max-w-[1240px] max-lg:justify-center mx-auto py-4 lg:items-center px-5'>
                 <div className='lg:hidden'>
                     <div className="dropdown">
-                        <div tabIndex={0} role="button" className="btn btn-ghost btn-circle">
-                            <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"> <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h7" /> </svg>
+                        <div tabIndex={0} role="button" className="btn btn-ghost btn-circle hover:bg-green-100">
+                            <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h7" />
+                            </svg>
                         </div>
-                        <ul
-                            tabIndex={0}
-                            className="menu menu-sm dropdown-content bg-base-100 text-[20px] font-medium space-y-4 rounded-box z-1 mt-3 w-52 p-2 shadow menu-navbar">
-                            <NavLink to='/'>Home</NavLink>
-                            <NavLink to='/Fridge'>Fridge</NavLink>
-                            {
-                                user ? <NavLink to='/add-food'>Add Food</NavLink> : <NavLink></NavLink>
-                            }
-                            {
-                                user ? <NavLink to='/my-items'>My Items</NavLink> : <NavLink></NavLink>
-                            }
+                        <ul tabIndex={0} className="menu menu-sm dropdown-content bg-white text-[18px] font-medium space-y-2 rounded-xl z-50 mt-3 w-52 p-3 shadow-lg">
+                            <NavLink to='/' className={({ isActive }) => isActive ? 'text-green-600 font-bold' : 'hover:text-green-600'}>Home</NavLink>
+                            <NavLink to='/Fridge' className={({ isActive }) => isActive ? 'text-green-600 font-bold' : 'hover:text-green-600'}>Fridge</NavLink>
+                            <NavLink to='/expired-foods' className={({ isActive }) => isActive ? 'text-green-600 font-bold' : 'hover:text-green-600'}>Expired Foods</NavLink>
+                            <NavLink to='/donation' className={({ isActive }) => isActive ? 'text-green-600 font-bold' : 'hover:text-green-600'}>Donation</NavLink>
+                            <NavLink to='/contact' className={({ isActive }) => isActive ? 'text-green-600 font-bold' : 'hover:text-green-600'}>Contact</NavLink>
+
+                            {/* {user && <NavLink to='/add-food' className={({ isActive }) => isActive ? 'text-green-600 font-bold' : 'hover:text-green-600'}>Add Food</NavLink>}
+                            {user && <NavLink to='/my-items' className={({ isActive }) => isActive ? 'text-green-600 font-bold' : 'hover:text-green-600'}>My Items</NavLink>} */}
                         </ul>
                     </div>
                 </div>
 
-                <div className='flex gap-4 lg:col-span-3 max-lg:justify-center items-center'>
-                    <Link to='/' className='flex gap-4 items-center'>
-                        <img src={foodLogo} alt="" className='w-[40px] h-[40px]' />
-                        <h1 className='text-[30px] font-bold max-md:hidden'>Food Tracker </h1>
+                <div className='flex gap-3 lg:col-span-3 max-lg:justify-center items-center'>
+                    <Link to='/' className='flex items-center gap-2 group'>
+                        <FaUtensils className='text-4xl text-green-600 group-hover:scale-110 transition-transform' />
+                        <h1 className='text-2xl font-bold max-md:hidden group-hover:text-green-600 transition-colors'>FoodSaver</h1>
                     </Link>
                 </div>
 
-                <div className='menu-navbar flex lg:gap-10 gap-4 text-[20px] font-medium col-span-6 justify-center align-middle max-lg:mb-5 max-lg:hidden'>
-                    <NavLink to='/'>Home</NavLink>
-                    <NavLink to='/Fridge'>Fridge</NavLink>
-                    <NavLink to='/expired-foods'>Expired Foods</NavLink>
-                    {
-                        user ? <NavLink to='/add-food'>Add Food</NavLink> : <NavLink></NavLink>
-                    }
-                    {
-                        user ? <NavLink to='/my-items'>My Items</NavLink> : <NavLink></NavLink>
-                    }
+                <div className='menu-navbar flex lg:gap-8 gap-4 text-[18px] font-medium col-span-6 justify-center items-center max-lg:hidden'>
+                    <NavLink to='/' className={({ isActive }) => isActive ? 'text-green-600 font-bold' : 'hover:text-green-600'}>Home</NavLink>
+                    <NavLink to='/Fridge' className={({ isActive }) => isActive ? 'text-green-600 font-bold' : 'hover:text-green-600'}>Fridge</NavLink>
+                    <NavLink to='/expired-foods' className={({ isActive }) => isActive ? 'text-green-600 font-bold' : 'hover:text-green-600'}>Expired Foods</NavLink>
 
+                    <NavLink to='/donation' className={({ isActive }) => isActive ? 'text-green-600 font-bold' : 'hover:text-green-600'}>Donation</NavLink>
+                    <NavLink to='/contact' className={({ isActive }) => isActive ? 'text-green-600 font-bold' : 'hover:text-green-600'}>Contact</NavLink>
+                    {/* {user && <>
+                        <NavLink to='/dashboard' className={({ isActive }) => isActive ? 'text-green-600 font-bold' : 'hover:text-green-600'}>Dashboard</NavLink>
+                        <NavLink to='/add-food' className={({ isActive }) => isActive ? 'text-green-600 font-bold' : 'hover:text-green-600'}>Add Food</NavLink>
+                        <NavLink to='/my-items' className={({ isActive }) => isActive ? 'text-green-600 font-bold' : 'hover:text-green-600'}>My Items</NavLink>
+                    </>} */}
                 </div>
 
-                <div className='lg:col-span-3 flex justify-end items-center gap-5'>
-
-                    {
-                        user ? <div className="relative flex justify-end items-center">
-
-                            <div className="dropdown dropdown-hover">
-                                <div tabIndex={0} role="button"><img
-                                    src={user.photoURL}
-                                    alt="User Avatar"
-                                    className="w-12 h-12 object-cover rounded-full cursor-pointer border text-center border-gray-300 shadow-md"
-                                /></div>
-                                <div tabIndex={0} className="dropdown-content menu absolute top-14 right-0 bg-white p-4 shadow-lg rounded-lg w-48 z-50">
-                                    <p className="text-gray-700 text-[18px] font-medium">{user.displayName}</p>
+                <div className='lg:col-span-3 flex justify-end items-center gap-4'>
+                    {user ? (
+                        <div className="relative group">
+                            <div className="dropdown dropdown-end">
+                                <div tabIndex={0} role="button" className="flex items-center gap-2">
+                                    <img
+                                        src={user.photoURL}
+                                        alt="User Avatar"
+                                        className="w-12 h-12 object-cover rounded-full cursor-pointer border-2 border-green-500 hover:border-green-600 transition-colors group-hover:scale-105"
+                                    />
                                 </div>
+                                <div tabIndex={0} className="dropdown-content menu absolute top-14 right-0 bg-white p-6 shadow-2xl rounded-xl w-72 z-50 transform opacity-0 scale-95 group-hover:opacity-100 group-hover:scale-100 transition-all duration-200">
+                                    <div className="space-y-4">
+                                        <div className="flex items-center gap-4 pb-4 border-b border-gray-100">
+                                            <img
+                                                src={user.photoURL}
+                                                alt="User Avatar"
+                                                className="w-16 h-16 rounded-full object-cover border-2 border-green-500"
+                                            />
+                                            <div>
+                                                <h3 className="text-xl font-bold text-gray-800">{user.displayName}</h3>
+                                                <p className="text-sm text-green-600 font-medium">Premium Member</p>
+                                            </div>
+                                        </div>
+                                        <Link to="/dashboard/my-items" className="flex text-xl font-medium items-center gap-3 py-2.5 px-4  hover:bg-green-50 rounded-lg transition-colors">
 
+                                            Dashboard
+                                        </Link>                                      
+
+                                           
+                                        
+                                        <button
+                                            onClick={handleLogOut}
+                                            className="w-full bg-gradient-to-r from-red-500 to-red-600 text-white py-3 px-4 rounded-lg cursor-pointer hover:from-red-600 hover:to-red-700 transition-all duration-300 font-medium"
+                                        >
+                                            Logout
+                                        </button>
+                                    </div>
+                                </div>
                             </div>
-
-                        </div> : <div className='flex gap-4 justify-end'>
-                            <Link to='/login' className="btn  btn-primary">Login</Link>
-                            <Link to='/register' className="btn btn-secondary max-md:hidden">Register</Link>
                         </div>
-
-
-                        // user ? <div className='flex gap-4 lg:justify-end justify-center'>
-                        //     <Link to='/my-profile'> <img className='w-10 h-10 object-cover rounded-[100%]' src={`${user ? user.photoURL : userProfile}`} alt="" /> </Link>
-                        //     <button onClick={handleLogOut} className="btn btn-primary">Log Out</button>
-                        // </div> : <div className='flex gap-4 lg:justify-end justify-center'>
-                        //     <Link to='/login' className="btn  btn-primary">Login</Link>
-                        //     <Link to='/register' className="btn  btn-secondary">Register</Link>
-                        // </div>
-                    }
-
-                    {
-                        user ? <div>
-                            <button
-                                onClick={handleLogOut}
-                                className="mt-2 w-full bg-green-500 cursor-pointer text-white px-2 py-2 rounded-md hover:bg-red-600 transition"
-                            >
-                                Logout
-                            </button></div> : <NavLink></NavLink>
-                    }
-
+                    ) : (
+                        <div className='flex gap-4'>
+                            <Link to='/login' className="px-6 py-2.5 text-white bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 rounded-lg font-medium transition-all duration-300 hover:scale-105">Login</Link>
+                            <Link to='/register' className="px-6 py-2.5 text-white bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 rounded-lg font-medium transition-all duration-300 hover:scale-105 max-md:hidden">Register</Link>
+                        </div>
+                    )}
                     <ToastContainer />
-
                 </div>
-
-
-
-
-
             </div>
         </div>
     );

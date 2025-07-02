@@ -4,10 +4,8 @@ import Swal from 'sweetalert2';
 import { useNavigate } from 'react-router';
 
 const AddFood = () => {
-
     const { user } = use(AuthContext);
     const navigate = useNavigate();
-    // console.log(user);
 
     const handleAddFood = e => {
         e.preventDefault();
@@ -18,86 +16,122 @@ const AddFood = () => {
         newFood.userEmail = user.email;
         newFood.createdAt = new Date().toISOString();
 
-        console.log(newFood);
-
         fetch('https://food-tracker-server-zeta.vercel.app/foods', {
             method: 'POST',
             headers: {
-                'content-type': 'application/json'
-                ,
+                'content-type': 'application/json',
                 authorization: `Bearer ${user.accessToken}`
-
             },
-
             body: JSON.stringify(newFood)
         })
             .then(res => res.json())
             .then(data => {
-
                 if (data.insertedId) {
-                    // console.log('added successfully.')
                     Swal.fire({
                         title: "Food added successfully!",
                         icon: "success",
-                        draggable: true,
-
+                        showConfirmButton: false,
+                        timer: 1500
                     });
                     navigate('/my-items')
-                    // form.reset()
                 }
             })
     }
 
     return (
-        <div className='max-w-[1240px] mx-auto mt-10 px-5 py-10 md:py-[120px]'>
-            <h2 className="text-3xl font-bold mb-7 text-center">Add Your Food</h2>
+        <div className="min-h-screen bg-gradient-to-b from-gray-50 to-gray-100 py-16 lg:py-[120px] px-4 sm:px-6 lg:px-8">
+            <div className="max-w-4xl mx-auto">
+                <div className="bg-white rounded-2xl shadow-xl p-8">
+                    <h2 className="text-4xl font-extrabold text-center text-gray-800 mb-8">
+                        Add New Food Item
+                    </h2>
 
-            <form onSubmit={handleAddFood}>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <fieldset className="fieldset bg-base-200 border-base-300 rounded-box border p-4">
-                        <label className="label">Food Image</label>
-                        <input type="url" name="image" className="input w-full" placeholder="Image URL" required />
-                    </fieldset>
+                    <form onSubmit={handleAddFood} className="space-y-6">
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div className="space-y-2">
+                                <label className="text-sm font-medium text-gray-700">Food Image</label>
+                                <div className="mt-1 relative rounded-md shadow-sm">
+                                    <input
+                                        type="url"
+                                        name="image"
+                                        className="focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-4 pr-12 sm:text-sm border-gray-300 rounded-lg transition duration-150 ease-in-out"
+                                        placeholder="Enter image URL"
+                                        required
+                                    />
+                                </div>
+                            </div>
 
-                    <fieldset className="fieldset bg-base-200 border-base-300 rounded-box border p-4">
-                        <label className="label">Food Title</label>
-                        <input type="text" name="title" className="input w-full" placeholder="Food Title" required />
-                    </fieldset>
+                            <div className="space-y-2">
+                                <label className="text-sm font-medium text-gray-700">Food Title</label>
+                                <input
+                                    type="text"
+                                    name="title"
+                                    className="focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-4 pr-12 sm:text-sm border-gray-300 rounded-lg"
+                                    placeholder="Enter food title"
+                                    required
+                                />
+                            </div>
 
-                    <fieldset className="fieldset bg-base-200 border-base-300 rounded-box border p-4">
-                        <label className="label">Quantity</label>
-                        <input type="number" name="Quantity" className="input w-full" placeholder="1" required />
-                    </fieldset>
+                            <div className="space-y-2">
+                                <label className="text-sm font-medium text-gray-700">Quantity</label>
+                                <input
+                                    type="number"
+                                    name="Quantity"
+                                    className="focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-4 pr-12 sm:text-sm border-gray-300 rounded-lg"
+                                    placeholder="Enter quantity"
+                                    min="1"
+                                    required
+                                />
+                            </div>
 
-                    <fieldset className="fieldset bg-base-200 border-base-300 rounded-box border p-4">
-                        <label className="label">Expiry Date</label>
-                        <input type='date' name="ExpiryDate" className="input w-full" placeholder="Expiry Date" required></input>
-                    </fieldset>
+                            <div className="space-y-2">
+                                <label className="text-sm font-medium text-gray-700">Expiry Date</label>
+                                <input
+                                    type="date"
+                                    name="ExpiryDate"
+                                    className="focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-4 pr-12 sm:text-sm border-gray-300 rounded-lg"
+                                    required
+                                />
+                            </div>
 
-                    <fieldset className="fieldset bg-base-200 border-base-300 rounded-box border p-4">
-                        <label className="label">Category</label>
-                        <select name="Category" className="select w-full" required>
-                            <option value="">Select Category</option>
-                            <option>Dairy</option>
-                            <option>Meat</option>
-                            <option>Vegetables</option>
-                            <option>Snacks</option>
+                            <div className="space-y-2">
+                                <label className="text-sm font-medium text-gray-700">Category</label>
+                                <select
+                                    name="Category"
+                                    className="focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-4 pr-12 sm:text-sm border-gray-300 rounded-lg"
+                                    required
+                                >
+                                    <option value="">Select a category</option>
+                                    <option>Dairy</option>
+                                    <option>Meat</option>
+                                    <option>Vegetables</option>
+                                    <option>Snacks</option>
+                                </select>
+                            </div>
 
-                        </select>
-                    </fieldset>
+                            <div className="space-y-2 md:col-span-2">
+                                <label className="text-sm font-medium text-gray-700">Description</label>
+                                <textarea
+                                    name="Description"
+                                    rows="4"
+                                    className="focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-4 pr-12 sm:text-sm border-gray-300 rounded-lg"
+                                    placeholder="Enter food description"
+                                    required
+                                />
+                            </div>
+                        </div>
 
-                    <fieldset className="fieldset bg-base-200 border-base-300 rounded-box border p-4">
-                        <label className="label">Description</label>
-                        <textarea name="Description" className="textarea w-full" placeholder="Description" required />
-                    </fieldset>
-
-
-
+                        <div className="pt-4">
+                            <button
+                                type="submit"
+                                className="w-full flex justify-center py-3 px-4 border border-transparent rounded-lg shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition duration-150 ease-in-out"
+                            >
+                                Add Food Item
+                            </button>
+                        </div>
+                    </form>
                 </div>
-
-                <input type="submit" className="btn w-full mt-6" value="Add Food" />
-            </form>
-
+            </div>
         </div>
     );
 };

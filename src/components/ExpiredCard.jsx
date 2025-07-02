@@ -115,7 +115,7 @@ const ExpiredCard = ({ food }) => {
                                 <motion.button
                                     whileHover={{ scale: 1.02 }}
                                     whileTap={{ scale: 0.98 }}
-                                    className="w-full bg-gradient-to-r from-gray-600 to-gray-700 hover:from-gray-700 hover:to-gray-800 text-white font-semibold py-3 px-4 rounded-2xl transition-all duration-300 shadow-lg hover:shadow-xl"
+                                    className="w-full bg-gradient-to-r  from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700  text-white font-semibold py-3 px-4 rounded-2xl transition-all duration-300 shadow-lg hover:shadow-xl"
                                 >
                                     <span className="flex items-center justify-center gap-2 text-sm">
                                         View Details

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import ExpiredCard from './ExpiredCard';
 import { AlertTriangle, CheckCircle2, RefreshCw, Trash2, Archive } from 'lucide-react';
+import { Link } from 'react-router';
 
 const ExpiredFoods = () => {
     const [foods, setFoods] = useState([]);
@@ -137,7 +138,8 @@ const ExpiredFoods = () => {
                         <span>Expired Items</span>
                     </div>
 
-                    <h2 className="text-5xl lg:text-6xl font-bold mb-6 bg-gradient-to-r from-red-600 via-rose-500 to-pink-600 bg-clip-text text-transparent">
+                    {/* <h2 className="text-5xl lg:text-6xl font-bold mb-6 bg-gradient-to-r from-red-600 via-rose-500 to-pink-600 bg-clip-text text-transparent"> */}
+                    <h2 className="text-5xl lg:text-6xl font-bold mb-6">
                         Expired Foods
                     </h2>
 
@@ -179,9 +181,9 @@ const ExpiredFoods = () => {
                         {/* Bottom Actions */}
                         <div className="text-center mt-12 pt-8 border-t border-gray-200">
                             {/* <p className="text-gray-600 mb-4">Need help with proper food disposal?</p> */}
-                            <button className="bg-gradient-to-r from-blue-500 to-indigo-500 hover:from-blue-600 hover:to-indigo-600 text-white font-semibold px-8 py-3 rounded-2xl transition-all duration-300 shadow-lg hover:shadow-xl">
+                            <Link to='/expired-foods' className="bg-gradient-to-r from-blue-500 to-indigo-500 hover:from-blue-600 hover:to-indigo-600 text-white font-semibold px-8 py-3 rounded-2xl transition-all duration-300 shadow-lg hover:shadow-xl">
                                 View All Expired Foods
-                            </button>
+                            </Link>
                         </div>
                     </>
                 )}

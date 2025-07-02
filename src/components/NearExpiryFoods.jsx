@@ -70,7 +70,8 @@ const NearExpiryFoods = () => {
                     <span>Time-Sensitive Items</span>
                 </div>
 
-                <h2 className="text-5xl lg:text-6xl font-bold mb-6 bg-gradient-to-r from-violet-600 via-purple-500 to-indigo-600 bg-clip-text text-transparent">
+                <h2 className="text-5xl lg:text-6xl font-bold mb-6">
+                {/* <h2 className="text-5xl lg:text-6xl font-bold mb-6 bg-gradient-to-r from-violet-600 via-purple-500 to-indigo-600 bg-clip-text text-transparent"> */}
                     Expiring Soon
                 </h2>
 

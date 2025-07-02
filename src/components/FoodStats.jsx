@@ -103,18 +103,19 @@ const FoodStats = () => {
         <div className='max-w-7xl mx-auto py-10 px-5 lg:py-28 md:py-20'>
             {/* Header Section */}
             <div className="text-center mb-16">
-                <div className="inline-flex items-center gap-3 bg-gradient-to-r from-red-100 to-rose-100 text-red-700 px-6 py-3 rounded-full font-semibold mb-6">
+                <div className="inline-flex items-center gap-3 bg-gradient-to-r from-violet-100 to-purple-100 text-violet-700 px-6 py-3 rounded-full font-semibold mb-6">
                     <TrendingUp className="w-5 h-5" />
                     <span>Food Inventory Overview</span>
                 </div>
 
-                <h2 className="text-5xl lg:text-6xl font-bold mb-6 bg-gradient-to-r from-red-600 via-rose-500 to-pink-600 bg-clip-text text-transparent">
+                {/* <h2 className="text-5xl lg:text-6xl font-bold mb-6 bg-gradient-to-r from-red-600 via-rose-500 to-pink-600 bg-clip-text text-transparent"> */}
+                <h2 className="text-5xl lg:text-6xl font-bold mb-6">
                     Food Stats Dashboard
                 </h2>
 
                 <p className="text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed">
                     Monitor your food inventory with real-time insights on expiring and expired items.
-                    <span className="font-semibold text-red-600"> Stay ahead of food waste!</span>
+                    <span className="font-semibold text-violet-600"> Stay ahead of food waste!</span>
                 </p>
             </div>
 
@@ -150,26 +151,26 @@ const FoodStats = () => {
                                     <div className="flex-1">
                                         <div className="flex items-center gap-3 mb-4">
                                             <div className="p-3 bg-gradient-to-r from-red-100 to-rose-100 rounded-xl">
-                                                <Clock className="w-6 h-6 text-red-700" />
+                                                <Clock className="w-6 h-6 " />
                                             </div>
-                                            <span className="text-sm font-medium text-red-700 uppercase tracking-wide bg-gradient-to-r from-red-100 to-rose-100 px-3 py-1 rounded-full">Warning</span>
+                                            <span className="text-sm font-medium  uppercase tracking-wide bg-gradient-to-r from-red-100 to-rose-100 px-3 py-1 rounded-full">Warning</span>
                                         </div>
-                                        <h3 className="text-2xl font-bold text-red-700 mb-2">Nearly Expiring</h3>
-                                        <p className="text-red-600 text-sm mb-6">Items expiring in next 5 days</p>
+                                        <h3 className="text-2xl font-bold  mb-2">Nearly Expiring</h3>
+                                        <p className="text-gray-700 text-sm mb-6">Items expiring in next 5 days</p>
                                     </div>
                                 </div>
 
                                 <div className="mb-8">
-                                    <div className="text-6xl font-bold bg-gradient-to-r from-red-600 via-rose-500 to-pink-600 bg-clip-text text-transparent mb-4">
+                                    <div className="text-6xl font-bold  mb-4">
                                         <CountUpAnimation end={nearExpiryFoods.length} />
                                     </div>
-                                    <div className="flex items-center gap-2 text-sm text-red-600">
+                                    <div className="flex items-center gap-2 text-sm ">
                                         <div className="w-2 h-2 bg-red-500 rounded-full animate-pulse"></div>
                                         <span>Requires immediate attention</span>
                                     </div>
                                 </div>
 
-                                <a href='#Expiring-Soon' className="w-full bg-gradient-to-r from-red-500 to-red-600 text-white font-semibold py-4 px-6 rounded-2xl hover:shadow-lg transition-all duration-300 flex items-center justify-center gap-2 group-hover:scale-[1.02] hover:from-red-600 hover:to-red-700">
+                                <a href='#Expiring-Soon' className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-semibold py-4 px-6 rounded-2xl hover:shadow-lg transition-all duration-300 flex items-center justify-center gap-2 group-hover:scale-[1.02]">
                                     <Eye className="w-5 h-5" />
                                     View All Near Expiry Items
                                 </a>
@@ -184,26 +185,26 @@ const FoodStats = () => {
                                     <div className="flex-1">
                                         <div className="flex items-center gap-3 mb-4">
                                             <div className="p-3 bg-gradient-to-r from-red-100 to-rose-100 rounded-xl">
-                                                <AlertTriangle className="w-6 h-6 text-red-700" />
+                                                <AlertTriangle className="w-6 h-6 " />
                                             </div>
-                                            <span className="text-sm font-medium text-red-700 uppercase tracking-wide bg-gradient-to-r from-red-100 to-rose-100 px-3 py-1 rounded-full">Critical</span>
+                                            <span className="text-sm font-medium  uppercase tracking-wide bg-gradient-to-r from-red-100 to-rose-100 px-3 py-1 rounded-full">Critical</span>
                                         </div>
-                                        <h3 className="text-2xl font-bold text-red-700 mb-2">Expired Items</h3>
-                                        <p className="text-red-600 text-sm mb-6">Past expiration date</p>
+                                        <h3 className="text-2xl font-bold  mb-2">Expired Items</h3>
+                                        <p className=" text-sm mb-6">Past expiration date</p>
                                     </div>
                                 </div>
 
                                 <div className="mb-8">
-                                    <div className="text-6xl font-bold bg-gradient-to-r from-red-600 via-rose-500 to-pink-600 bg-clip-text text-transparent mb-4">
+                                    <div className="text-6xl font-bold mb-4">
                                         <CountUpAnimation end={expiredCount.length} />
                                     </div>
-                                    <div className="flex items-center gap-2 text-sm text-red-600">
+                                    <div className="flex items-center gap-2 text-sm ">
                                         <div className="w-2 h-2 bg-red-500 rounded-full animate-pulse"></div>
                                         <span>Disposal required</span>
                                     </div>
                                 </div>
 
-                                <Link to='/expired-foods' className="w-full bg-gradient-to-r from-red-500 to-red-600 text-white font-semibold py-4 px-6 rounded-2xl hover:shadow-lg transition-all duration-300 flex items-center justify-center gap-2 group-hover:scale-[1.02] hover:from-red-600 hover:to-red-700">
+                                <Link to='/expired-foods' className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-semibold py-4 px-6 rounded-2xl hover:shadow-lg transition-all duration-300 flex items-center justify-center gap-2 group-hover:scale-[1.02]">
                                     <Eye className="w-5 h-5" />
                                     View All Expired Items
                                 </Link>

@@ -1,85 +1,101 @@
-import React from "react";
+import { useEffect, useState } from 'react';
+import FoodCard from '../components/FoodCard';
 
-const expiredFoods = [
-    {
-        id: 1,
-        name: "Expired Milk",
-        image: "https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=400&q=80",
-        expiredDate: "2024-06-01",
-        quantity: 2,
-        reason: "Past expiration date",
-    },
-    {
-        id: 2,
-        name: "Stale Bread",
-        image: "https://images.unsplash.com/photo-1519864600265-abb23847ef2c?auto=format&fit=crop&w=400&q=80",
-        expiredDate: "2024-05-28",
-        quantity: 1,
-        reason: "Mold detected",
-    },
-    {
-        id: 3,
-        name: "Rotten Apples",
-        image: "https://images.unsplash.com/photo-1502741338009-cac2772e18bc?auto=format&fit=crop&w=400&q=80",
-        expiredDate: "2024-05-25",
-        quantity: 5,
-        reason: "Spoiled",
-    },
-];
+const ExpiredFoodsPage = () => {
+    const [foods, setFoods] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
+    const [currentPage, setCurrentPage] = useState(1);
+    const itemsPerPage = 9;
 
-export default function ExpiredFoodsPage() {
+    useEffect(() => {
+        const fetchExpiredFoods = async () => {
+            setLoading(true);
+            setError(null);
+            try {
+                const res = await fetch('https://food-tracker-server-zeta.vercel.app/foods/expired');
+                if (!res.ok) throw new Error('Failed to fetch expired foods');
+                const data = await res.json();
+                setFoods(data);
+            } catch (error) {
+                console.error("Error fetching expired foods:", error);
+                setError(error.message);
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        fetchExpiredFoods();
+    }, []);
+
+    // Calculate pagination
+    const totalPages = Math.ceil(foods.length / itemsPerPage);
+    const startIndex = (currentPage - 1) * itemsPerPage;
+    const endIndex = startIndex + itemsPerPage;
+    const currentFoods = foods.slice(startIndex, endIndex);
+
+    const handlePageChange = (pageNumber) => {
+        setCurrentPage(pageNumber);
+    };
+
+    if (loading) {
+        return (
+            <div className="min-h-screen flex items-center justify-center">
+                <div className="animate-spin rounded-full h-16 w-16 border-t-4 border-red-500"></div>
+            </div>
+        );
+    }
+
+    if (error) {
+        return (
+            <div className="min-h-screen flex items-center justify-center">
+                <div className="text-red-500 text-xl">{error}</div>
+            </div>
+        );
+    }
+
     return (
-        <div className="min-h-screen bg-gradient-to-br from-red-50 to-orange-100 py-10 px-4">
-            <div className="max-w-4xl mx-auto">
-                <h1 className="text-4xl font-extrabold text-red-700 mb-2 text-center drop-shadow-lg">
-                    Expired Foods
-                </h1>
-                <p className="text-gray-600 text-center mb-8">
-                    Here are the foods that have expired. Please dispose of them safely.
-                </p>
-                <div className="grid gap-8 md:grid-cols-2">
-                    {expiredFoods.map((food) => (
-                        <div
-                            key={food.id}
-                            className="bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-shadow duration-300 flex items-center p-5 gap-6 border-l-8 border-red-400"
-                        >
-                            <img
-                                src={food.image}
-                                alt={food.name}
-                                className="w-28 h-28 object-cover rounded-xl border-4 border-red-100"
-                            />
-                            <div className="flex-1">
-                                <h2 className="text-2xl font-bold text-red-600 mb-1">
-                                    {food.name}
-                                </h2>
-                                <div className="text-gray-500 text-sm mb-2">
-                                    <span className="font-medium">Expired:</span>{" "}
-                                    {food.expiredDate}
-                                </div>
-                                <div className="flex items-center gap-4 mb-2">
-                                    <span className="bg-red-100 text-red-700 px-3 py-1 rounded-full text-xs font-semibold">
-                                        Qty: {food.quantity}
-                                    </span>
-                                    <span className="bg-orange-100 text-orange-700 px-3 py-1 rounded-full text-xs font-semibold">
-                                        {food.reason}
-                                    </span>
-                                </div>
-                                <button className="mt-2 px-4 py-2 bg-red-500 hover:bg-red-600 text-white rounded-lg shadow transition">
-                                    Remove
-                                </button>
-                            </div>
+        <div className="min-h-screen bg-gray-100 py-16 lg:py-[120px] px-4 sm:px-6 lg:px-8">
+            <div className="max-w-7xl mx-auto">
+                <div className="text-center mb-12">
+                    <h1 className="text-6xl font-bold text-gray-900 mb-4">Expired Foods</h1>
+                    <p className="text-lg text-gray-600">These items have passed their expiration date</p>
+                </div>
+                
+                {foods.length === 0 ? (
+                    <div className="text-center text-gray-500 text-xl">
+                        No expired foods found
+                    </div>
+                ) : (
+                    <>
+                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                            {currentFoods.map((food) => (
+                                <FoodCard key={food._id} food={food} />
+                            ))}
                         </div>
-                    ))}
-                </div>
-                <div className="mt-12 text-center">
-                    <a
-                        href="/foods"
-                        className="inline-block px-6 py-3 bg-gradient-to-r from-orange-400 to-red-500 text-white font-bold rounded-xl shadow-lg hover:scale-105 transition"
-                    >
-                        Back to Foods
-                    </a>
-                </div>
+
+                        {totalPages > 1 && (
+                            <div className="flex justify-center mt-8 gap-2">
+                                {[...Array(totalPages)].map((_, index) => (
+                                    <button
+                                        key={index + 1}
+                                        onClick={() => handlePageChange(index + 1)}
+                                        className={`px-4 py-2 rounded ${
+                                            currentPage === index + 1
+                                                ? 'bg-red-500 text-white'
+                                                : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
+                                        }`}
+                                    >
+                                        {index + 1}
+                                    </button>
+                                ))}
+                            </div>
+                        )}
+                    </>
+                )}
             </div>
         </div>
     );
-}
+};
+
+export default ExpiredFoodsPage;
