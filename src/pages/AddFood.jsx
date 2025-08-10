@@ -33,7 +33,7 @@ const AddFood = () => {
                         showConfirmButton: false,
                         timer: 1500
                     });
-                    navigate('/my-items')
+                    navigate('/dashboard/my-items')
                 }
             })
     }
