@@ -1,8 +1,8 @@
 # 🧊 Food Tracker – Food Expiry Management Web App
 
 [Live Website 🌐](https://coruscating-stardust-95ebcd.netlify.app/)  
-[Client Repository 📁](https://github.com/Programming-Hero-Web-Course4/b11a11-client-side-Arif547)  
-[Server Repository ⚙️](https://github.com/Programming-Hero-Web-Course4/b11a11-server-side-Arif547)
+[Client Repository 📁](https://github.com/Arif547/Food-Tracker-Client-Side.git)  
+[Server Repository ⚙️](https://github.com/Arif547/Food-Tracker-Server-Side)
 
 ## 📝 Project Overview
 
