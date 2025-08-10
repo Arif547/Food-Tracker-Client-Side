@@ -3,7 +3,7 @@ import Banner from '../components/Banner';
 
 import NearExpiryFoods from '../components/NearExpiryFoods';
 import ExpiredFoods from '../components/ExpiredFoods';
-import { motion, useScroll } from "motion/react"
+// import { motion, useScroll } from "motion/react"
 import FoodStats from '../components/FoodStats';
 import TipsSection from '../components/TipsSection';
 import DonateSection from '../components/DonateSection';
@@ -11,11 +11,11 @@ import DonateSection from '../components/DonateSection';
 
 
 const Home = () => {
-    const { scrollYProgress } = useScroll()
+    // const { scrollYProgress } = useScroll()
 
     return (
         <div>
-            <motion.div className='z-50'
+            {/* <motion.div className='z-50'
                 id="scroll-indicator"
                 style={{
                     scaleX: scrollYProgress,
@@ -27,7 +27,7 @@ const Home = () => {
                     originX: 0,
                     backgroundColor: "#ff0088",
                 }}
-            />
+            /> */}
 
 
             <Banner></Banner>
