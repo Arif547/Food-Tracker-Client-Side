@@ -1,8 +1,9 @@
-import React, { use, useEffect } from 'react';
+import React, { use, useEffect, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router';
 import { AuthContext } from '../provider/AuthProvider';
 import { toast } from 'react-toastify';
 import OtherSignin from '../components/OtherSignin';
+import { set } from 'date-fns';
 
 
 const Login = () => {
@@ -77,7 +78,15 @@ const Login = () => {
     //             console.log(error);
     //         })
     // }
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const Email = "admin@foodsaver.com"
+    const Password = "Admin2023#$";
 
+    const handleAdminLogin = () => {
+        setEmail(Email);
+        setPassword(Password);
+    }
 
 
 
@@ -91,16 +100,18 @@ const Login = () => {
                     <form onSubmit={handleLogin} >
                         <fieldset className="fieldset space-y-3">
                             <label className="label">Email</label>
-                            <input name='email' type="email" className="input" placeholder="Email" required />
+                            <input name='email' type="email" className="input" id="email" placeholder="Email" value={email} required />
 
                             <label className="label">Password</label>
-                            <input name='password' type="password" className="input" placeholder="Password" required />
+                            <input name='password' type="password" className="input" id='password' placeholder="Password" value={password} required />
 
 
                             <button type='submit' className="btn btn-neutral mt-4">Login</button>
                         </fieldset>
                         <div><a onClick={handeleforgotPassword} className="link link-hover">Forgot password?</a></div>
                     </form>
+
+                    <button onClick={handleAdminLogin} className="btn btn-primary mt-4">Login to Explore</button>
 
                     {/* GitHub */}
                     {/* <button onClick={handleGithubSignIn} className="btn bg-black text-white border-black">
